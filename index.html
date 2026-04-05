@@ -816,13 +816,22 @@
             254-428-1211
           </div>
         </a>
-        <a href="mailto:lindsay@centraltexas.digital" class="contact-detail">
+        <a id="emailLink" href="#" class="contact-detail">
           <span class="contact-detail-icon">✉️</span>
           <div class="contact-detail-text">
             <span class="contact-detail-label">Email</span>
-            lindsay@centraltexas.digital
+            <span id="emailDisplay"></span>
           </div>
         </a>
+        <script>
+          (function(){
+            var u="lindsay", d="centraltexas.digital";
+            var el=document.getElementById("emailDisplay");
+            var lnk=document.getElementById("emailLink");
+            if(el){ el.textContent=u+"@"+d; }
+            if(lnk){ lnk.href="mailto:"+u+"@"+d; }
+          })();
+        </script>
         <a href="#contact" class="contact-detail">
           <span class="contact-detail-icon">📍</span>
           <div class="contact-detail-text">
@@ -835,15 +844,13 @@
         <script src="https://js-na2.hsforms.net/forms/embed/245799251.js" defer></script>
         <div class="hs-form-frame" data-region="na2" data-form-id="0d649ec0-95fc-497d-bead-4de9f4ed24b1" data-portal-id="245799251"></div>
         <style>
-          .hubspot-form-wrap { color: var(--white); }
-          .hs-form-frame { min-height: 400px; }
-          /* Override HubSpot white background */
-          .hs-form-frame,
-          .hs-form-frame > *,
-          iframe.hs-form-iframe {
-            background: transparent !important;
-            color: var(--white) !important;
+          .hubspot-form-wrap {
+            background: #1a2235;
+            border: 1px solid rgba(0,200,240,0.18);
+            border-radius: 8px;
+            padding: 2rem;
           }
+          .hs-form-frame { min-height: 400px; }
         </style>
         <script>
           // After HubSpot form loads, inject dark styles into iframe
