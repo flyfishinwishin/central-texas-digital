@@ -816,11 +816,11 @@
             254-428-1211
           </div>
         </a>
-        <a href="/cdn-cgi/l/email-protection#bbd7d2d5dfc8dac2fbd8ded5cfc9dad7cfdec3dac895dfd2dcd2cfdad7" class="contact-detail">
+        <a href="mailto:lindsay@centraltexas.digital" class="contact-detail">
           <span class="contact-detail-icon">✉️</span>
           <div class="contact-detail-text">
             <span class="contact-detail-label">Email</span>
-            <span class="__cf_email__" data-cfemail="563a3f383225372f163533382224373a22332e372578323f313f22373a">[email&#160;protected]</span>
+            lindsay@centraltexas.digital
           </div>
         </a>
         <a href="#contact" class="contact-detail">
@@ -837,7 +837,35 @@
         <style>
           .hubspot-form-wrap { color: var(--white); }
           .hs-form-frame { min-height: 400px; }
+          /* Override HubSpot white background */
+          .hs-form-frame,
+          .hs-form-frame > *,
+          iframe.hs-form-iframe {
+            background: transparent !important;
+            color: var(--white) !important;
+          }
         </style>
+        <script>
+          // After HubSpot form loads, inject dark styles into iframe
+          window.addEventListener('message', function(e) {
+            try {
+              var frames = document.querySelectorAll('iframe.hs-form-iframe');
+              frames.forEach(function(frame) {
+                var doc = frame.contentDocument || frame.contentWindow.document;
+                var style = doc.createElement('style');
+                style.innerHTML = [
+                  'body, form, .hs-form { background: #0d1528 !important; color: #fff !important; }',
+                  'input, select, textarea { background: #111827 !important; border: 1px solid rgba(0,200,240,0.18) !important; color: #fff !important; border-radius: 3px !important; }',
+                  'label { color: #00c8f0 !important; font-size: 0.7rem !important; letter-spacing: 0.12em !important; text-transform: uppercase !important; }',
+                  'input[type=submit] { background: #00c8f0 !important; color: #0a0f1e !important; border: none !important; font-weight: 700 !important; letter-spacing: 0.1em !important; text-transform: uppercase !important; cursor: pointer !important; }',
+                  '.hs-error-msgs { color: #ff5050 !important; }',
+                  '.submitted-message { color: #00c8f0 !important; }'
+                ].join("");
+                doc.head.appendChild(style);
+              });
+            } catch(e) {}
+          });
+        </script>
       </div>
       <div style="display:none">
         <form class="contact-form" id="contactForm" action="https://formspree.io/f/xzdkypnl" method="POST">
