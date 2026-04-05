@@ -816,11 +816,11 @@
             254-428-1211
           </div>
         </a>
-        <a href="mailto:ldillon@centraltexas.digital" class="contact-detail">
+        <a href="mailto:lindsay@centraltexas.digital" class="contact-detail">
           <span class="contact-detail-icon">✉️</span>
           <div class="contact-detail-text">
             <span class="contact-detail-label">Email</span>
-            ldillon@centraltexas.digital
+            lindsay@centraltexas.digital
           </div>
         </a>
         <a href="#contact" class="contact-detail">
@@ -832,30 +832,30 @@
         </a>
       </div>
       <div>
-        <div class="contact-form">
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xzdkypnl" method="POST">
           <div class="form-row">
             <div class="form-field">
-              <label>Your Name</label>
-              <input type="text" placeholder="Jane Smith">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required>
             </div>
             <div class="form-field">
-              <label>Business Name</label>
-              <input type="text" placeholder="Smith's Diner">
+              <label for="business">Business Name</label>
+              <input type="text" id="business" name="business" placeholder="Smith's Diner" required>
             </div>
           </div>
           <div class="form-row">
             <div class="form-field">
-              <label>Phone</label>
-              <input type="tel" placeholder="(254) 555-0100">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="(254) 555-0100">
             </div>
             <div class="form-field">
-              <label>Email</label>
-              <input type="email" placeholder="you@yourbusiness.com">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@yourbusiness.com" required>
             </div>
           </div>
           <div class="form-field">
-            <label>Business Type</label>
-            <select>
+            <label for="business_type">Business Type</label>
+            <select id="business_type" name="business_type">
               <option value="">Select your business type...</option>
               <option>Restaurant / Food & Beverage</option>
               <option>Salon / Spa / Beauty</option>
@@ -865,11 +865,50 @@
             </select>
           </div>
           <div class="form-field">
-            <label>What's your biggest marketing challenge?</label>
-            <textarea placeholder="Tell us a little about your business and what you're looking to improve..."></textarea>
+            <label for="message">What's your biggest marketing challenge?</label>
+            <textarea id="message" name="message" placeholder="Tell us a little about your business and what you're looking to improve..."></textarea>
           </div>
-          <button class="btn-submit" type="button">Send Message — It's Free →</button>
-        </div>
+          <!-- Success message -->
+          <div id="successMsg" style="display:none; background:rgba(0,200,240,0.1); border:1px solid var(--cyan); border-radius:4px; padding:1rem 1.2rem; color:var(--cyan); font-size:0.9rem; margin-bottom:1rem;">
+            ✓ Message sent! Lindsay will be in touch within 24 hours.
+          </div>
+          <!-- Error message -->
+          <div id="errorMsg" style="display:none; background:rgba(255,80,80,0.1); border:1px solid #ff5050; border-radius:4px; padding:1rem 1.2rem; color:#ff5050; font-size:0.9rem; margin-bottom:1rem;">
+            ✗ Something went wrong. Please email lindsay@centraltexas.digital directly.
+          </div>
+          <button class="btn-submit" type="submit" id="submitBtn">Send Message — It's Free →</button>
+        </form>
+        <script>
+          const form = document.getElementById('contactForm');
+          const submitBtn = document.getElementById('submitBtn');
+          const successMsg = document.getElementById('successMsg');
+          const errorMsg = document.getElementById('errorMsg');
+          form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            try {
+              const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+              });
+              if (response.ok) {
+                successMsg.style.display = 'block';
+                errorMsg.style.display = 'none';
+                form.reset();
+                submitBtn.textContent = 'Message Sent ✓';
+              } else {
+                throw new Error('Form error');
+              }
+            } catch {
+              errorMsg.style.display = 'block';
+              successMsg.style.display = 'none';
+              submitBtn.textContent = 'Send Message — It\'s Free →';
+              submitBtn.disabled = false;
+            }
+          });
+        </script>
       </div>
     </div>
   </div>
@@ -898,10 +937,4 @@
   </div>
   <div class="footer-right">
     <div>© 2026 Central Texas Digital. All rights reserved.</div>
-    <div>ldillon@centraltexas.digital &nbsp;|&nbsp; 254-428-1211</div>
-    <div style="color:rgba(139,163,184,0.5); font-size:0.72rem; margin-top:0.25rem;">Email & SMS Marketing · Serving the Heart of Texas</div>
-  </div>
-</footer>
-
-</body>
-</html>
+    <div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0f636b666363606
