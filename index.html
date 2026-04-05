@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Central Texas Digital — Email & SMS Marketing for Local Business</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:       #0a0f1e;
+    --navy-mid:   #0d1528;
+    --navy-card:  #111827;
+    --cyan:       #00c8f0;
+    --cyan-glow:  #00e5ff;
+    --cyan-dim:   #0099bb;
+    --cyan-faint: rgba(0,200,240,0.08);
+    --white:      #ffffff;
+    --gray:       #8ba3b8;
+    --border:     rgba(0,200,240,0.18);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Exo 2', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── GRID OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(0,200,240,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,240,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 4rem;
+    background: rgba(10,15,30,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+    text-decoration: none;
+  }
+
+  /* SVG logo inline */
+  .logo-icon { width: 42px; height: 42px; }
+
+  .logo-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+    color: var(--white);
+  }
+  .logo-text span { color: var(--cyan); display: block; letter-spacing: 0.2em; font-size: 0.9rem; }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+
+  .nav-cta {
+    background: transparent;
+    color: var(--cyan) !important;
+    border: 1.5px solid var(--cyan);
+    padding: 0.5rem 1.4rem;
+    border-radius: 3px;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    transition: background 0.2s, color 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--cyan) !important; color: var(--navy) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Glowing orb */
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,200,240,0.07) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%,-50%) scale(1.08); }
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 1px solid var(--border);
+    background: var(--cyan-faint);
+    color: var(--cyan);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero-badge::before { content: '●'; font-size: 0.5rem; animation: blink 1.5s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  .hero h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  .hero h1 .cyan { color: var(--cyan); text-shadow: 0 0 30px rgba(0,200,240,0.4); }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--gray);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp 0.7s 0.3s ease both;
+    margin-bottom: 4rem;
+  }
+  .btn-primary {
+    background: var(--cyan);
+    color: var(--navy);
+    padding: 0.9rem 2.2rem;
+    border-radius: 3px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: box-shadow 0.2s, transform 0.2s;
+    box-shadow: 0 0 24px rgba(0,200,240,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(0,200,240,0.5); }
+
+  .btn-ghost {
+    border: 1.5px solid var(--border);
+    color: var(--white);
+    padding: 0.9rem 2.2rem;
+    border-radius: 3px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+
+  /* Stats bar */
+  .stats-bar {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden;
+    width: 100%; max-width: 860px;
+    animation: fadeUp 0.7s 0.4s ease both;
+    background: var(--navy-card);
+  }
+  .stat-item {
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-item::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: var(--cyan);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+  }
+  .stat-item:hover::after { transform: scaleX(1); }
+  .stat-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--cyan);
+    text-shadow: 0 0 20px rgba(0,200,240,0.4);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--gray);
+    margin-top: 0.3rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── SECTIONS ── */
+  section { position: relative; z-index: 1; }
+
+  .section-inner { padding: 6rem 4rem; max-width: 1200px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: inline-block; width: 32px; height: 1px;
+    background: var(--cyan);
+  }
+
+  .section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    color: var(--gray);
+    font-size: 1rem;
+    line-height: 1.75;
+    max-width: 540px;
+    font-weight: 300;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ── SERVICES ── */
+  .services { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .service-card {
+    background: var(--navy-card);
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: background 0.3s;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+  }
+  .service-card:hover { background: rgba(0,200,240,0.04); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .svc-icon {
+    width: 48px; height: 48px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    background: var(--cyan-faint);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .service-card:hover .svc-icon {
+    border-color: var(--cyan);
+    box-shadow: 0 0 16px rgba(0,200,240,0.2);
+  }
+
+  .service-card h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+    color: var(--white);
+  }
+  .service-card p {
+    font-size: 0.88rem;
+    color: var(--gray);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem; position: relative;
+  }
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: calc(12.5% + 8px); right: calc(12.5% + 8px);
+    height: 1px;
+    background: linear-gradient(90deg, var(--cyan), var(--cyan-dim), var(--cyan));
+    opacity: 0.3;
+  }
+
+  .step { text-align: center; }
+  .step-dot {
+    width: 56px; height: 56px;
+    border: 2px solid var(--cyan);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    position: relative; z-index: 1;
+    background: var(--navy);
+    box-shadow: 0 0 20px rgba(0,200,240,0.2);
+  }
+  .step-dot span {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cyan);
+  }
+  .step h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.6rem;
+  }
+  .step p { font-size: 0.85rem; color: var(--gray); line-height: 1.65; font-weight: 300; }
+
+  /* ── PRICING ── */
+  .pricing { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .price-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2.5rem 2rem;
+    background: var(--navy-card);
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .price-card:hover { border-color: var(--cyan-dim); transform: translateY(-4px); }
+  .price-card.featured {
+    border-color: var(--cyan);
+    box-shadow: 0 0 40px rgba(0,200,240,0.12);
+  }
+
+  .featured-badge {
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    background: var(--cyan);
+    color: var(--navy);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.9rem;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .price-tier {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 1rem;
+  }
+
+  .price-amount {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .price-amount sup { font-size: 1.4rem; vertical-align: super; }
+  .price-amount sub { font-size: 1rem; color: var(--gray); font-family: 'Exo 2', sans-serif; font-weight: 300; }
+
+  .price-desc { font-size: 0.82rem; color: var(--gray); margin-bottom: 2rem; font-weight: 300; }
+
+  .price-divider { height: 1px; background: var(--border); margin-bottom: 1.5rem; }
+
+  .price-features { list-style: none; margin-bottom: 2rem; }
+  .price-features li {
+    font-size: 0.86rem;
+    padding: 0.5rem 0;
+    color: var(--gray);
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-weight: 300;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .price-features li::before { content: '›'; color: var(--cyan); font-size: 1rem; font-weight: 700; flex-shrink: 0; }
+
+  .btn-plan {
+    display: block; text-align: center;
+    padding: 0.85rem;
+    border-radius: 3px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid var(--border);
+    color: var(--white);
+    transition: all 0.2s;
+  }
+  .btn-plan:hover { border-color: var(--cyan); color: var(--cyan); }
+  .price-card.featured .btn-plan {
+    background: var(--cyan);
+    color: var(--navy);
+    border-color: var(--cyan);
+    box-shadow: 0 0 20px rgba(0,200,240,0.3);
+  }
+  .price-card.featured .btn-plan:hover { box-shadow: 0 0 36px rgba(0,200,240,0.5); }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start;
+  }
+
+  .contact-info h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .contact-info p { color: var(--gray); font-size: 0.95rem; line-height: 1.75; font-weight: 300; margin-bottom: 2rem; }
+
+  .contact-detail {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--navy-card);
+    margin-bottom: 0.75rem;
+    text-decoration: none;
+    color: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .contact-detail:hover { border-color: var(--cyan); box-shadow: 0 0 16px rgba(0,200,240,0.1); }
+  .contact-detail-icon { font-size: 1.2rem; }
+  .contact-detail-text { font-size: 0.9rem; }
+  .contact-detail-label { font-size: 0.68rem; color: var(--cyan); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 0.15rem; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-field label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 0.8rem 1rem;
+    color: var(--white);
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder { color: rgba(139,163,184,0.5); }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 12px rgba(0,200,240,0.1);
+  }
+  .form-field select { appearance: none; cursor: pointer; }
+  .form-field textarea { resize: vertical; min-height: 100px; }
+
+  .btn-submit {
+    background: var(--cyan);
+    color: var(--navy);
+    border: none;
+    padding: 1rem;
+    border-radius: 3px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s;
+    box-shadow: 0 0 20px rgba(0,200,240,0.25);
+  }
+  .btn-submit:hover { box-shadow: 0 0 36px rgba(0,200,240,0.45); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    position: relative; z-index: 1;
+    background: var(--navy);
+  }
+
+  .footer-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+
+  .footer-right {
+    text-align: right;
+    font-size: 0.78rem;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .section-inner { padding: 4rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .steps::before { display: none; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .stat-item:nth-child(2) { border-right: none; }
+    .stat-item:nth-child(3) { border-top: 1px solid var(--border); }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    .footer-right { text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero { padding-top: 7rem; }
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <!-- Inline SVG replicating the circuit-arrow logo style -->
+    <svg class="logo-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="cg" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#00c8f0"/>
+          <stop offset="100%" stop-color="#0099ff"/>
+        </linearGradient>
+      </defs>
+      <!-- Circuit lines -->
+      <line x1="10" y1="22" x2="34" y2="22" stroke="url(#cg)" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="10" y1="40" x2="34" y2="40" stroke="url(#cg)" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="10" y1="58" x2="34" y2="58" stroke="url(#cg)" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Dots -->
+      <circle cx="10" cy="22" r="3.5" fill="url(#cg)"/>
+      <circle cx="10" cy="40" r="3.5" fill="url(#cg)"/>
+      <circle cx="10" cy="58" r="3.5" fill="url(#cg)"/>
+      <!-- Arrow chevrons -->
+      <polyline points="38,22 56,40 38,58" stroke="url(#cg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <polyline points="50,22 68,40 50,58" stroke="url(#cg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <div class="logo-text">CENTRAL TEXAS<span>DIGITAL</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Free Strategy Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Serving Central Texas Local Businesses</div>
+  <h1>Email & SMS Marketing<br>That <span class="cyan">Gets Results</span></h1>
+  <p class="hero-sub">We write, send, and manage targeted email and text campaigns for local restaurants, salons, and trades — bringing in more customers without adding to your workload.</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-primary">Book a Free Strategy Call</a>
+    <a href="#services" class="btn-ghost">See How It Works</a>
+  </div>
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">42%</div>
+      <div class="stat-label">Avg Email Open Rate</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">98%</div>
+      <div class="stat-label">SMS Read Rate</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">8×</div>
+      <div class="stat-label">Avg Client ROI</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">48hr</div>
+      <div class="stat-label">First Campaign Live</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-eyebrow">What We Do</div>
+    <h2 class="section-title">Everything Handled.<br>Nothing Left Out.</h2>
+    <p class="section-sub">We specialize in one thing: getting local Central Texas businesses more customers through email and SMS — done completely for you.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="svc-icon">✉️</div>
+        <h3>Targeted Email Campaigns</h3>
+        <p>Professional, personalized emails sent to your customer list and cold prospects — written to get opened, read, and acted on every time.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">📱</div>
+        <h3>SMS Text Campaigns</h3>
+        <p>Reach customers instantly with targeted texts — promos, appointment reminders, flash deals — delivered straight to their phone with 98% open rates.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🎯</div>
+        <h3>Cold Outreach & Lead Gen</h3>
+        <p>We build your prospect list and run personalized outreach to bring in new customers — not just keep existing ones warm.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🤖</div>
+        <h3>AI-Powered Personalization</h3>
+        <p>Every message is personalized using AI — right name, right offer, right timing. No generic blasts. Customers feel spoken to directly.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">⚡</div>
+        <h3>Done-For-You Setup</h3>
+        <p>We handle everything — list building, copywriting, scheduling, and sending. You don't touch a thing. Live in 48 hours.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">📊</div>
+        <h3>Clear Monthly Reporting</h3>
+        <p>Simple reports showing opens, clicks, responses, and revenue tied to each campaign. No confusing dashboards — just results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-inner">
+    <div class="section-eyebrow">The Process</div>
+    <h2 class="section-title">Up & Running in 4 Steps</h2>
+    <p class="section-sub">From first call to first campaign live in 48 hours. We keep it that simple.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-dot"><span>1</span></div>
+        <h4>Free Strategy Call</h4>
+        <p>We learn your business, customers, and goals. Just 20 minutes of your time.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot"><span>2</span></div>
+        <h4>We Build Your Campaign</h4>
+        <p>We write your emails and texts, build your list, and set up your automation.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot"><span>3</span></div>
+        <h4>You Approve & Launch</h4>
+        <p>Review everything before it goes out. We hit send when you're ready.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot"><span>4</span></div>
+        <h4>Watch Results Come In</h4>
+        <p>Customers book, call, and walk in. We report results and optimize monthly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-inner">
+    <div class="section-eyebrow">Pricing</div>
+    <h2 class="section-title">Flat Monthly Rates.<br>No Surprises.</h2>
+    <p class="section-sub">No setup fees. No long-term contracts. Cancel anytime. Built for small business budgets in Central Texas.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tier">Starter</div>
+        <div class="price-amount"><sup>$</sup>297<sub>/mo</sub></div>
+        <div class="price-desc">Perfect for getting started</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>2 email campaigns/month</li>
+          <li>1 SMS campaign/month</li>
+          <li>Up to 500 contacts</li>
+          <li>Done-for-you copywriting</li>
+          <li>Monthly performance report</li>
+          <li>Email support</li>
+        </ul>
+        <a href="#contact" class="btn-plan">Get Started</a>
+      </div>
+      <div class="price-card featured">
+        <div class="featured-badge">Most Popular</div>
+        <div class="price-tier">Growth</div>
+        <div class="price-amount"><sup>$</sup>597<sub>/mo</sub></div>
+        <div class="price-desc">For businesses ready to scale</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>4 email campaigns/month</li>
+          <li>4 SMS campaigns/month</li>
+          <li>Up to 2,000 contacts</li>
+          <li>Cold outreach included</li>
+          <li>AI personalization</li>
+          <li>Bi-weekly reporting</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#contact" class="btn-plan">Get Started</a>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Pro</div>
+        <div class="price-amount"><sup>$</sup>997<sub>/mo</sub></div>
+        <div class="price-desc">Full-service marketing partner</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Unlimited campaigns</li>
+          <li>Unlimited SMS</li>
+          <li>Unlimited contacts</li>
+          <li>Full lead gen & cold outreach</li>
+          <li>Weekly strategy calls</li>
+          <li>Weekly reporting</li>
+          <li>Dedicated account manager</li>
+        </ul>
+        <a href="#contact" class="btn-plan">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-eyebrow">Get In Touch</div>
+    <h2 class="section-title">Let's Talk About<br>Your Business.</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Book Your Free Strategy Call</h3>
+        <p>No commitment, no pressure — just a 20-minute conversation about your business and whether email & SMS marketing is a good fit for you.</p>
+        <a href="tel:2544281211" class="contact-detail">
+          <span class="contact-detail-icon">📞</span>
+          <div class="contact-detail-text">
+            <span class="contact-detail-label">Call or Text</span>
+            254-428-1211
+          </div>
+        </a>
+        <a href="mailto:ldillon@centraltexas.digital" class="contact-detail">
+          <span class="contact-detail-icon">✉️</span>
+          <div class="contact-detail-text">
+            <span class="contact-detail-label">Email</span>
+            ldillon@centraltexas.digital
+          </div>
+        </a>
+        <a href="#contact" class="contact-detail">
+          <span class="contact-detail-icon">📍</span>
+          <div class="contact-detail-text">
+            <span class="contact-detail-label">Location</span>
+            Serving All of Central Texas
+          </div>
+        </a>
+      </div>
+      <div>
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Your Name</label>
+              <input type="text" placeholder="Jane Smith">
+            </div>
+            <div class="form-field">
+              <label>Business Name</label>
+              <input type="text" placeholder="Smith's Diner">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Phone</label>
+              <input type="tel" placeholder="(254) 555-0100">
+            </div>
+            <div class="form-field">
+              <label>Email</label>
+              <input type="email" placeholder="you@yourbusiness.com">
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Business Type</label>
+            <select>
+              <option value="">Select your business type...</option>
+              <option>Restaurant / Food & Beverage</option>
+              <option>Salon / Spa / Beauty</option>
+              <option>Trades (HVAC, Plumbing, Electric)</option>
+              <option>Retail</option>
+              <option>Other Local Business</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>What's your biggest marketing challenge?</label>
+            <textarea placeholder="Tell us a little about your business and what you're looking to improve..."></textarea>
+          </div>
+          <button class="btn-submit" type="button">Send Message — It's Free →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <svg width="36" height="36" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="cg2" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#00c8f0"/>
+          <stop offset="100%" stop-color="#0099ff"/>
+        </linearGradient>
+      </defs>
+      <line x1="10" y1="22" x2="34" y2="22" stroke="url(#cg2)" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="10" y1="40" x2="34" y2="40" stroke="url(#cg2)" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="10" y1="58" x2="34" y2="58" stroke="url(#cg2)" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="10" cy="22" r="3.5" fill="url(#cg2)"/>
+      <circle cx="10" cy="40" r="3.5" fill="url(#cg2)"/>
+      <circle cx="10" cy="58" r="3.5" fill="url(#cg2)"/>
+      <polyline points="38,22 56,40 38,58" stroke="url(#cg2)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <polyline points="50,22 68,40 50,58" stroke="url(#cg2)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <div class="logo-text" style="font-size:1rem;">CENTRAL TEXAS<span style="font-size:0.75rem;">DIGITAL</span></div>
+  </div>
+  <div class="footer-right">
+    <div>© 2026 Central Texas Digital. All rights reserved.</div>
+    <div>ldillon@centraltexas.digital &nbsp;|&nbsp; 254-428-1211</div>
+    <div style="color:rgba(139,163,184,0.5); font-size:0.72rem; margin-top:0.25rem;">Email & SMS Marketing · Serving the Heart of Texas</div>
+  </div>
+</footer>
+
+</body>
+</html>
